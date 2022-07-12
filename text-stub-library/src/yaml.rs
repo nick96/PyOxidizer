@@ -481,6 +481,9 @@ pub struct TbdVersion4 {
     /// Undefineds sections.
     #[serde(default)]
     pub undefineds: Vec<TbdVersion4UndefinedsSection>,
+
+    #[serde(default)]
+    pub reexported_libraries: Vec<TbdVersion4ReExportedLibrariesSection>
 }
 
 /// A UUID value in a TBD version 4 data structure.
@@ -529,6 +532,12 @@ pub struct TbdVersion4ExportSection {
     /// List of thread local symbols.
     #[serde(default)]
     pub thread_local_symbols: Vec<String>,
+}
+
+#[derive(Clone, Debug, Deserialize, Serialize)]
+pub struct TbdVersion4ReExportedLibrariesSection {
+    pub targets: Vec<String>,
+    pub libraries: Vec<String>,
 }
 
 /// Undefineds sections in a version 4 TBD structure.
